@@ -1,4 +1,4 @@
-namespace InventorySystem.WebbApp.Data
+namespace InventorySystem.WebApp.Data
 {
     public class WeatherForecastService
     {
