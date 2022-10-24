@@ -3,6 +3,7 @@ using InventorySystem.UseCases;
 using InventorySystem.UseCases.Interfaces;
 using InventorySystem.UseCases.PluginInterfaces;
 using InventorySystem.WebApp.Data;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,10 +14,12 @@ builder.Services.AddSingleton<WeatherForecastService>();
 
 builder.Services.AddDbContext<InventorySystemContext>(options =>
 {
-    options.UseInMemoryDatebase("InventorySystem");
+    options.UseInMemoryDatabase("InventorySystem");
 });
+
 builder.Services.AddTransient<IInventoryRepository, InventoryRepository>();
 builder.Services.AddTransient<IViewInventoriesByNameUseCase, ViewInventoriesByNameUseCase>();
+builder.Services.AddTransient<IAddInventoryUseCase,AddInventoryUseCase>();
 
 var app = builder.Build();
 

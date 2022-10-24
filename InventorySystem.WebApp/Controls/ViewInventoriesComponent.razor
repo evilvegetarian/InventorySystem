@@ -1,0 +1,28 @@
+﻿@inject IViewInventoriesByNameUseCase ViewInventoriesByNameUseCase
+
+<div class="input-group mb-3">
+    <input type="text"
+        class="form-control form-control-lg"
+        placeholder="Typer inventory name here to search"
+           @bind-value="inventoryNameToSearchl" />
+
+        <button type="button" class="input-group-text btn-success"
+            @onclick="@(async()=>{ await ViewInventories(); })">
+        View
+    </button>
+</div>
+
+
+@code 
+{
+    private string? inventoryNameToSearchl;
+
+    [Parameter]
+    public EventCallback<List<Inventory>> OnSearchInventories { get; set; }
+
+    public async Task ViewInventories(){
+        var inventories = (await ViewInventoriesByNameUseCase.
+        ExecuteAsync(inventoryNameToSearchl ?? string.Empty))?.ToList();
+       await OnSearchInventories.InvokeAsync(inventories);
+    }
+}
