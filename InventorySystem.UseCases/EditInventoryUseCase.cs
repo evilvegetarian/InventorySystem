@@ -4,20 +4,18 @@ using InventorySystem.UseCases.PluginInterfaces;
 
 namespace InventorySystem.UseCases
 {
-    public class AddInventoryUseCase : IAddInventoryUseCase
+    public class EditInventoryUseCase : IEditInventoryUseCase
     {
         private readonly IInventoryRepository inventoryRepository;
 
-        public AddInventoryUseCase(IInventoryRepository inventoryRepository)
+        public EditInventoryUseCase(IInventoryRepository inventoryRepository)
         {
             this.inventoryRepository = inventoryRepository;
         }
 
         public async Task ExecuteAsync(Inventory inventory)
         {
-
-
-            await inventoryRepository.AddInventoryAsync(inventory);
+            await this.inventoryRepository.UpdateInventoryAsync(inventory);
         }
     }
 }
