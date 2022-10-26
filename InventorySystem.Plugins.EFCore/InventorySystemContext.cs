@@ -1,4 +1,5 @@
 ﻿using InventorySystem.CoreBuisness;
+using InventorySystem.UseCases;
 using Microsoft.EntityFrameworkCore;
 
 namespace InventorySystem.Plugins.EFCore
@@ -10,14 +11,22 @@ namespace InventorySystem.Plugins.EFCore
 
         }
         public DbSet<Inventory> Inventories { get; set; }
+        public DbSet<Product> Products { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<Inventory>().HasData(
-                new Inventory { InventoryId = 1, InventoryName = "Engine", Quantity = 1, Price = 1000 },
+        { 
+             modelBuilder.Entity<Inventory>().HasData(
+                new Inventory { InventoryId = 1, InventoryName = "Gas Engine", Quantity = 1, Price = 1000 },
                 new Inventory { InventoryId = 2, InventoryName = "Body", Quantity = 1, Price = 400 },
                 new Inventory { InventoryId = 3, InventoryName = "Wheels", Quantity = 1, Price = 100 },
-                new Inventory { InventoryId = 4, InventoryName = "Seats", Quantity = 5, Price = 50 }
+                new Inventory { InventoryId = 4, InventoryName = "Seats", Quantity = 5, Price = 50 },
+                new Inventory { InventoryId = 5, InventoryName = "Electric Engine", Quantity = 2, Price = 800 },
+                new Inventory { InventoryId = 6, InventoryName = "Battery", Quantity = 5, Price = 400 }
+                );
+
+            modelBuilder.Entity<Product>().HasData(
+                new Product { ProductId = 1, ProductName = "Gas Car", Quantity = 1, Price = 20000 },
+                new Product { ProductId = 2, ProductName = "Electric Car", Quantity = 1, Price = 15000 }
                 );
         }
     }

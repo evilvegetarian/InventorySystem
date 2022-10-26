@@ -2,7 +2,7 @@
 using InventorySystem.UseCases.Interfaces;
 using InventorySystem.UseCases.PluginInterfaces;
 
-namespace InventorySystem.UseCases
+namespace InventorySystem.UseCases.Inventories
 {
     public class AddInventoryUseCase : IAddInventoryUseCase
     {
@@ -15,8 +15,6 @@ namespace InventorySystem.UseCases
 
         public async Task ExecuteAsync(Inventory inventory)
         {
-
-
             await inventoryRepository.AddInventoryAsync(inventory);
         }
     }
