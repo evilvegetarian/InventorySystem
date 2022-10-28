@@ -3,17 +3,17 @@ using InventorySystem.UseCases.PluginInterfaces;
 
 namespace InventorySystem.UseCases
 {
-    public class ViewProductsByNameUseCase : IViewProductsByNameUseCase
+    public class EditProductUseCase : IEditProductUseCase
     {
         private readonly IProductRepository productRepository;
 
-        public ViewProductsByNameUseCase(IProductRepository productRepository)
+        public EditProductUseCase(IProductRepository productRepository)
         {
             this.productRepository = productRepository;
         }
-        public async Task<List<Product>> ExecuteAsync(string name = "")
+        public async Task ExecutAsync(Product product)
         {
-            return await this.productRepository.GetProductsByNameAsync(name);
+            await this.productRepository.UpdateProductAsync(product);
         }
     }
 }
