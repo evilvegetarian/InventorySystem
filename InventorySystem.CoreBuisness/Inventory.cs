@@ -6,7 +6,6 @@ namespace InventorySystem.CoreBuisness
     public class Inventory
     {
         public int InventoryId { get; set; }
-
         [Required]
         public string? InventoryName { get; set; }
 

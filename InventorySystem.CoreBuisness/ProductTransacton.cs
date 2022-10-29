@@ -2,19 +2,19 @@
 
 namespace InventorySystem.CoreBuisness
 {
-    public class InventoryTransacton
+    public class ProductTransacton
     {
-        public int InventoryTransactionId { get; set; }
+        public int ProductTransactionId { get; set; }
         [Required]
-        public int InventoryId { get; set; }
+        public int ProductId { get; set; }
         [Required]
         public int QuantityBefore { get; set; }
-        [Required] 
-        public InventoryTransactonType ActivityType { get; set; }
         [Required]
-        public int QuantityAfter { get; set; }   
-        public string? PONumber { get; set; }
+        public ProductTransactonType ActivityType { get; set; }
+        [Required]
+        public int QuantityAfter { get; set; }
         public string? ProductionNumber { get; set; }
+        public string? SalesOrderNumber { get; set; }
 
         public double? UnitPrice { get; set; }
 
@@ -23,7 +23,7 @@ namespace InventorySystem.CoreBuisness
         [Required]
         public string DoneBy { get; set; }
 
-        public Inventory Inventory { get; set; }
+        public Product Product { get; set; }
 
     }
 }

@@ -19,11 +19,11 @@ namespace InventorySystem.UseCases.PluginInterfaces
                 PONumber = poNumber,
                 InventoryId = inventory.InventoryId,
                 QuantityBefore = inventory.Quantity,
-                InventoryType = InventoryTransactonType.PurchaseInventory,
+                ActivityType = InventoryTransactonType.PurchaseInventory,
                 QuantityAfter = inventory.Quantity + quantity,
                 TransactionData = DateTime.Now,
                 DoneBy = doneBy,
-                Cost = price * quantity
+                UnitPrice = price
             }) ;
             await this.db.SaveChangesAsync();
         }
