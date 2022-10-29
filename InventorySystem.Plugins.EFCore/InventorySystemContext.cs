@@ -12,6 +12,7 @@ namespace InventorySystem.Plugins.EFCore
         }
         public DbSet<Inventory> Inventories { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet <InventoryTransacton> InventoryTransactons { get; set; } 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

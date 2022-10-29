@@ -1,7 +1,7 @@
 ﻿using InventorySystem.UseCases.Interfaces;
 using InventorySystem.UseCases.PluginInterfaces;
 
-namespace InventorySystem.UseCases
+namespace InventorySystem.UseCases.Products
 {
     public class AddProductUseCase : IAddProductUseCase
     {

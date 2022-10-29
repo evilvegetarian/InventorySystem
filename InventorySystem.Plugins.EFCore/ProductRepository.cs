@@ -22,9 +22,14 @@ namespace InventorySystem.Plugins.EFCore
             await db.SaveChangesAsync();
         }
 
-        public Task DeleteProductAsync(int productId)
+        public async Task DeleteProductAsync(int productId)
         {
-            
+            var product = await db.Products.FindAsync(productId);
+            if (product != null)
+            {
+                product.IsActive = false;
+                await db.SaveChangesAsync();
+            }
         }
 
         public async Task<Product> GetProductsByIdAsync(int productId)
@@ -37,8 +42,9 @@ namespace InventorySystem.Plugins.EFCore
 
         public async Task<List<Product>> GetProductsByNameAsync(string name)
         {
-            return await this.db.Products.Where(x => x.ProductName.Contains(name, StringComparison.OrdinalIgnoreCase) ||
-                                   string.IsNullOrWhiteSpace(name)).ToListAsync();
+            return await this.db.Products
+                .Where(x => (x.ProductName.Contains(name, StringComparison.OrdinalIgnoreCase) ||
+                                   string.IsNullOrWhiteSpace(name)) && x.IsActive).ToListAsync();
         }
 
         public async Task UpdateProductAsync(Product product)

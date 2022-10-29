@@ -4,7 +4,8 @@
     <input type="text"
         class="form-control form-control-lg"
         placeholder="Type inventory name here to search"
-           @bind-value="inventoryNameToSearch" />
+           @bind-value="inventoryNameToSearch" 
+           @bind-value:event="oninput"/>
 
         <button type="button" class="input-group-text btn-success"
             @onclick="@(async()=>{ await ViewInventories(); })">View</button>
@@ -12,7 +13,7 @@
 
 @if (this.DisplaySearchResult && _inventories!=null && selectedInventory==null)
 {
-    <div style="overflow-y:auto; max-height:300px; border:1px solid silver">
+    <div style="overflow-y:auto; max-height:300px; border:1px solid silver;padding-top:3px">
         <ul style="list-style-type:none">
             @foreach(var inv in _inventories)
             {
@@ -26,7 +27,20 @@
 
 @code 
 {
-    private string? inventoryNameToSearch;
+
+    private string? _inventoryNameToSearch;
+    public string? inventoryNameToSearch
+    {
+        get => inventoryNameToSearch;
+        set
+        { 
+            _inventoryNameToSearch = value; 
+            if (!string.IsNullOrWhiteSpace(_inventoryNameToSearch) && _inventoryNameToSearch.Length>2)
+            {
+                ViewInventories();
+            }
+        }
+    }
     private List<Inventory>? _inventories;
     private Inventory? selectedInventory;
 
@@ -45,6 +59,8 @@
         await OnSearchInventories.InvokeAsync(inventories);
         _inventories = inventories;
         this.selectedInventory = null;
+
+        StateHasChanged();
     }
 
     private async Task SelectInventory(Inventory inventory)

@@ -1,7 +1,7 @@
 ﻿using InventorySystem.UseCases.Interfaces;
 using InventorySystem.UseCases.PluginInterfaces;
 
-namespace InventorySystem.UseCases
+namespace InventorySystem.UseCases.Products
 {
     public class ViewProductsByNameUseCase : IViewProductsByNameUseCase
     {
@@ -13,7 +13,7 @@ namespace InventorySystem.UseCases
         }
         public async Task<List<Product>> ExecuteAsync(string name = "")
         {
-            return await this.productRepository.GetProductsByNameAsync(name);
+            return await productRepository.GetProductsByNameAsync(name);
         }
     }
 }

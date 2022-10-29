@@ -1,7 +1,7 @@
 ﻿using InventorySystem.UseCases.Interfaces;
 using InventorySystem.UseCases.PluginInterfaces;
 
-namespace InventorySystem.UseCases
+namespace InventorySystem.UseCases.Products
 {
     public class EditProductUseCase : IEditProductUseCase
     {
@@ -13,7 +13,7 @@ namespace InventorySystem.UseCases
         }
         public async Task ExecutAsync(Product product)
         {
-            await this.productRepository.UpdateProductAsync(product);
+            await productRepository.UpdateProductAsync(product);
         }
     }
 }

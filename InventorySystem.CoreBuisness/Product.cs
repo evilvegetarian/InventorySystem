@@ -16,12 +16,13 @@ namespace InventorySystem.UseCases
         [Product_EnsurePriceIsGreaterThanInventoriesPrice]
         public double Price { get; set; }
 
+        public bool IsActive { get; set; } = true;
+
         public List<ProductInventory>? ProductInventories { get; set; }
 
         public double TotalInventoryCost()
         {
             return this.ProductInventories.Sum(x => x.Inventory?.Price * x.InventoryQuantity ?? 0);
-
         }
 
         public bool ValidatePricing()

@@ -3,6 +3,7 @@ using InventorySystem.UseCases;
 using InventorySystem.UseCases.Interfaces;
 using InventorySystem.UseCases.Inventories;
 using InventorySystem.UseCases.PluginInterfaces;
+using InventorySystem.UseCases.Products;
 using InventorySystem.WebApp.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -20,6 +21,7 @@ builder.Services.AddDbContext<InventorySystemContext>(options =>
 
 builder.Services.AddTransient<IInventoryRepository, InventoryRepository>();
 builder.Services.AddTransient<IProductRepository, ProductRepository>();
+builder.Services.AddTransient<IInventoryTransactonRepository, InventoryTransactonRepository>();
 
 builder.Services.AddTransient<IViewInventoriesByNameUseCase, ViewInventoriesByNameUseCase>();
 builder.Services.AddTransient<IAddInventoryUseCase, AddInventoryUseCase>();
@@ -30,13 +32,14 @@ builder.Services.AddTransient<IViewProductsByNameUseCase, ViewProductsByNameUseC
 builder.Services.AddTransient<IAddProductUseCase, AddProductUseCase>();
 builder.Services.AddTransient<IViewProductByIdUseCase, ViewProductByIdUseCase>();
 builder.Services.AddTransient<IEditProductUseCase, EditProductUseCase>();
+builder.Services.AddTransient<IPurchaseInventoryUseCase, PurchaseInventoryUseCase>();
 
 var app = builder.Build();
 
 var scope = app.Services.CreateScope();
 var inventorySystemContext = scope.ServiceProvider.GetRequiredService<InventorySystemContext>();
-inventorySystemContext.Database.EnsureDeleted();
-inventorySystemContext.Database.EnsureCreated();
+//inventorySystemContext.Database.EnsureDeleted();
+//inventorySystemContext.Database.EnsureCreated();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

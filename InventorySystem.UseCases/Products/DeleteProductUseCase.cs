@@ -1,8 +1,9 @@
-﻿using InventorySystem.UseCases.PluginInterfaces;
+﻿using InventorySystem.UseCases.Interfaces;
+using InventorySystem.UseCases.PluginInterfaces;
 
-namespace InventorySystem.UseCases
+namespace InventorySystem.UseCases.Products
 {
-    public class DeleteProductUseCase
+    public class DeleteProductUseCase : IDeleteProductUseCase
     {
         private readonly IProductRepository productRepository;
 
@@ -13,7 +14,7 @@ namespace InventorySystem.UseCases
 
         public async Task ExecuteAsync(int productId)
         {
-           await this.productRepository.DeleteProductAsync(productId);
+            await productRepository.DeleteProductAsync(productId);
         }
     }
 }

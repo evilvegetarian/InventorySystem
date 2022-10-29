@@ -61,5 +61,9 @@
             NavigationManager.NavigateTo("/products");
         }
     }
+    private void OnInventorySelected(List<ProductInventory> productInventories)
+    {
+        this.product.ProductInventories = productInventories;
+    }
 
 }
