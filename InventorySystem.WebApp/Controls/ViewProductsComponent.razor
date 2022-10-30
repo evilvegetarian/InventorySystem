@@ -4,7 +4,9 @@
     <input type="text"
         class="form-control form-control-lg"
         placeholder="Typer product name here to search"
-           @bind-value="productNameToSearch" />
+           @bind-value="_productNameToSearch" 
+           @bind-value:event="oniput"
+           />
 
         <button type="button" class="input-group-text btn-success"
             @onclick="@(async()=>{ await ViewProducts(); })">
@@ -26,7 +28,20 @@
 
 @code 
 {
-    private string? productNameToSearch;
+    private string? _productNameToSearch;
+    private string? productNameToSearch
+    {
+        get=>_productNameToSearch;
+        set
+        {
+            _productNameToSearch = value;
+            if (!string.IsNullOrWhiteSpace(_productNameToSearch) && _productNameToSearch.Length>2)
+            {
+                ViewProducts();
+            }
+
+        }
+    }
 
     private List<Product>? _products;
     private Product? selectedProduct;
@@ -43,7 +58,11 @@
     public async Task ViewProducts(){
         var products = (await ViewProductsByNameUseCase.
         ExecuteAsync(productNameToSearch ?? string.Empty))?.ToList();
+
         await OnSearchProducts.InvokeAsync(products);
+        _products = products;
+        this.selectedProduct = null;
+        StateHasChanged();
     }
     private async Task SelectProduct(Product product)
     {

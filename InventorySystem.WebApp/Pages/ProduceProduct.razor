@@ -1,6 +1,9 @@
 ﻿@page "/produce"
 
 @inject IProduceProductUseCase ProduceProductUseCase
+@inject IValidateEnoughInventoriesForProducingUseCase ValidateEnoughInventoriesForProducingUseCase
+
+<ErrorMessageComponent ErrorMessage="@errorMessage"></ErrorMessageComponent>
 
 <h3>Produce Product</h3>
 <br />
@@ -42,11 +45,23 @@
     </EditForm>
 }
 @code {
-    private ProduceViewModel produceViewModel;
+    private ProduceViewModel produceViewModel = new ProduceViewModel();
     private Product selectedProduct;
-
+    private string errorMessage;
     private async Task OnValidSubmit()
     {
+        if(! await ValidateEnoughInventoriesForProducingUseCase
+         .ExecuteAsync(this.selectedProduct,this.produceViewModel.QuantityToProduce))
+        {
+            errorMessage = "error";
+            return;
+        }
+        else
+        {
+            errorMessage = "empty";
+        }
+
+        
         await ProduceProductUseCase.ExecuteAsync(
         this.produceViewModel.ProductionNumber,
         this.selectedProduct,

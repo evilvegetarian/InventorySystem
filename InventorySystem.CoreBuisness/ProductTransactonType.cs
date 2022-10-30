@@ -2,8 +2,8 @@
 {
     public enum ProductTransactonType
     {
-        ProduceProduct=1,
-        SellProduct=2
+        ProduceProduct = 1,
+        SellProduct = 2
 
     }
 }

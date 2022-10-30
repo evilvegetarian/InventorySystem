@@ -24,7 +24,7 @@ namespace InventorySystem.UseCases.PluginInterfaces
                 TransactionData = DateTime.Now,
                 DoneBy = doneBy,
                 UnitPrice = price
-            }) ;
+            });
             await this.db.SaveChangesAsync();
         }
     }

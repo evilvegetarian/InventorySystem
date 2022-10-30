@@ -9,10 +9,10 @@ namespace InventorySystem.CoreBuisness
         public int InventoryId { get; set; }
         [Required]
         public int QuantityBefore { get; set; }
-        [Required] 
+        [Required]
         public InventoryTransactonType ActivityType { get; set; }
         [Required]
-        public int QuantityAfter { get; set; }   
+        public int QuantityAfter { get; set; }
         public string? PONumber { get; set; }
         public string? ProductionNumber { get; set; }
 
