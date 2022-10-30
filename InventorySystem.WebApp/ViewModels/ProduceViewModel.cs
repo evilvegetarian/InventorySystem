@@ -2,22 +2,22 @@
 
 namespace InventorySystem.WebApp.ViewModels
 {
-    public class PurchaseViewModel
+    public class ProduceViewModel
     {
         [Required]
-        public string PurchaseOrder { get; set; } = string.Empty;
+        public string ProductionNumber { get; set; } = string.Empty;
 
         [Required]
         [Range(minimum: 1, maximum: int.MaxValue, ErrorMessage = "You have to select a product.")]
-        public int InventoryId { get; set; }
+        public int ProductId { get; set; }
 
         [Required]
-        public string InventoryName { get; set; }
+        public string ProductName { get; set; }
 
         [Required]
         [Range(minimum: 1, maximum: int.MaxValue, ErrorMessage = "Quantity has to be greater than 1.")]
-        public int QuantityToPurchase { get; set; }
+        public int QuantityToProduce { get; set; }
 
-        public double InventoryPrice { get; set; }
+        public double ProductPrice { get; set; }
     }
 }
