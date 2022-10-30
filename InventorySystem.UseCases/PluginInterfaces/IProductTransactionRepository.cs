@@ -2,6 +2,6 @@
 {
     public interface IProductTransactionRepository
     {
-        Task ProduceAsync(string productNumber, Product product, int quantity, double price, string doneBy);
+        Task ProduceAsync(string productNumber, Product product, int quantity, string doneBy);
     }
 }

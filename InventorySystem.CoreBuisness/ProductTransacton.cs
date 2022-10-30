@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using InventorySystem.UseCases;
+using System.ComponentModel.DataAnnotations;
 
 namespace InventorySystem.CoreBuisness
 {

@@ -23,9 +23,9 @@ namespace InventorySystem.UseCases
         }
 
 
-        public async Task ExecuteAsync(string productNumber, Product product, int quantity, double price, string doneBy)
+        public async Task ExecuteAsync(string productNumber, Product product, int quantity, string doneBy)
         {
-            await this.productTransactionRepository.ProduceAsync(productNumber, product, quantity, price, doneBy);
+            await this.productTransactionRepository.ProduceAsync(productNumber, product, quantity, doneBy);
 
             product.Quantity += quantity;
             await this.productRepository.UpdateProductAsync(product);
